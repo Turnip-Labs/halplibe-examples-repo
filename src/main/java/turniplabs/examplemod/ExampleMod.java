@@ -116,5 +116,8 @@ public class ExampleMod implements ModInitializer, RecipeEntrypoint {
 		// Modify the rich dirt entry to include diamonds
 		RecipeBuilder.ModifyTrommel("minecraft", "rich_dirt")
 			.addEntry(new WeightedRandomLootObject(Item.diamond.getDefaultStack(), 3), 5);
+
+		// You can also set halplibe to export all the recipes to a json file by going to 'run/config/halplibe.cfg' and setting 'ExportRecipes' to true
+		// This will export all loaded recipes to 'run/recipeDump/recipes.json' at startup
 	}
 }
