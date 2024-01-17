@@ -13,7 +13,7 @@ import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.RecipeEntrypoint;
 
 
-public class ExampleMod implements ModInitializer, GameStartEntrypoint, RecipeEntrypoint {
+public class ExampleMod implements ModInitializer, GameStartEntrypoint {
 	public static final String MOD_ID = "examplemod";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static BlockBuilder standardBlockBuilder = new BlockBuilder(MOD_ID)
@@ -115,11 +115,6 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint, RecipeEn
 
 	@Override
 	public void afterGameStart() {
-
-	}
-
-	@Override
-	public void onRecipesReady() {
 
 	}
 }
