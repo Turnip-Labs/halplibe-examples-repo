@@ -17,12 +17,12 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint {
 	public static final String MOD_ID = "examplemod";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static BlockBuilder standardBlockBuilder = new BlockBuilder(MOD_ID)
-		.setNorthTexture(16, 8) // the coordinates of the blue N texture from the atlas
-		.setSouthTexture(17, 8) // the coordinates of the green S texture from the atlas
-		.setBottomTexture(18, 8) // the coordinates of the purple D texture from the atlas
-		.setEastTexture(16, 9) // the coordinates of the red E texture from the atlas
-		.setWestTexture(17, 9) // the coordinates of the yellow W texture from the atlas
-		.setTopTexture(18, 9) // the coordinates of the orange U texture from the atlas
+		.setNorthTexture(16, 8) // the coordinates of the blue N texture from the terrain atlas
+		.setSouthTexture(17, 8) // the coordinates of the green S texture from the terrain atlas
+		.setBottomTexture(18, 8) // the coordinates of the purple D texture from the terrain atlas
+		.setEastTexture(16, 9) // the coordinates of the red E texture from the terrain atlas
+		.setWestTexture(17, 9) // the coordinates of the yellow W texture from the terrain atlas
+		.setTopTexture(18, 9) // the coordinates of the orange U texture from the terrain atlas
 		.setHardness(5f); // Sets the hardness which affects the time to mine the blocks
 	public static Block directionCube;
 	public static Block grassTop;
