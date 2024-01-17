@@ -1,0 +1,10 @@
+tile.examplemod.direction.name=Direction Cube
+tile.examplemod.direction.desc=A cube with direction indicators on each side
+tile.examplemod.grassTop.name=Grass Topped
+tile.examplemod.grassTop.desc=The standard template but with the top set to Grass
+tile.examplemod.stoneSide.name=Stone Sides
+tile.examplemod.stoneSide.desc=The standard template but with the sides set to Stone
+tile.examplemod.customItem.name=Custom Item
+tile.examplemod.customItem.desc=Sends a message in chat when to try to place it
+tile.examplemod.customModel.name=Custom Model
+tile.examplemod.customModel.desc=A Torch with custom textures

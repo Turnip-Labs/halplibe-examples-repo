@@ -3,8 +3,8 @@
   "id": "examplemod",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This mod aims to help new BTA modders.",
+  "name": "Example Mod - BlockBuilder",
+  "description": "Show cases the HalpLibe blockbuilder and its features.",
   "authors": [
     "Turnip Labs"
   ],
