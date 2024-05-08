@@ -8,3 +8,5 @@ tile.examplemod.customItem.name=Custom Item
 tile.examplemod.customItem.desc=Sends a message in chat when to try to place it
 tile.examplemod.customModel.name=Custom Model
 tile.examplemod.customModel.desc=A Torch with custom textures
+tile.examplemod.customModel2.name=Custom Model 2
+tile.examplemod.customModel2.desc=A custom block model with a sponge texture
