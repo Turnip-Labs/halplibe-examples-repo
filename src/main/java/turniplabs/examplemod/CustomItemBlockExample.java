@@ -14,7 +14,7 @@ public class CustomItemBlockExample extends ItemBlock {
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
 		boolean success = super.onItemUse(stack, player, world, blockX, blockY, blockZ, side, xPlaced, yPlaced);
-		player.addChatMessage("You " + (success ? "succeeded" : "failed") + " at placing the block");
+		player.sendMessage("You " + (success ? "succeeded" : "failed") + " at placing the block");
 		return success;
 	}
 }

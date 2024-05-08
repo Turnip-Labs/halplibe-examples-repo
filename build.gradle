@@ -68,7 +68,7 @@ dependencies {
 	// Helper library
 	// If you do not need Halplibe you can comment this line out or delete this line
 	modImplementation "com.github.Turnip-Labs:bta-halplibe:${project.halplibe_version}"
-	modImplementation "com.github.Turnip-Labs:ModMenu:${project.modmenu_version}"
+	compileOnly(modRuntimeOnly "com.github.Turnip-Labs:ModMenu:${project.modmenu_version}")
 
 	include(implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:0.2.0-beta.9")))
 
