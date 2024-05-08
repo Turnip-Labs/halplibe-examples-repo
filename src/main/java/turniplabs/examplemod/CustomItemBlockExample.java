@@ -13,7 +13,10 @@ public class CustomItemBlockExample extends ItemBlock {
 	}
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
+		// Success is true if the block actually placed, otherwise its false
 		boolean success = super.onItemUse(stack, player, world, blockX, blockY, blockZ, side, xPlaced, yPlaced);
+
+		// Tell the player they succeeded at placing the block if the did infact place the block
 		player.sendMessage("You " + (success ? "succeeded" : "failed") + " at placing the block");
 		return success;
 	}

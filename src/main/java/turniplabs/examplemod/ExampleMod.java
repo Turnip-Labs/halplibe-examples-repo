@@ -22,6 +22,7 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint {
 	public static Block stoneSide;
 	public static Block customBlockItem;
 	public static Block customBlockModel;
+	public static Block customBlockModel2;
 	@Override
 	public void onInitialize() {
 		LOGGER.info("ExampleMod initialized.");
@@ -71,7 +72,7 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint {
 			.setBlockModel(block -> new BlockModelStandard<>(block).withTextures(
 				"minecraft:block/grass_top",
 				"minecraft:block/dirt",
-				"examplemod:block/grass_side"))
+				"minecraft:block/grass_side"))
 			.setItemBlock((Block b) -> new CustomItemBlockExample(b)) // Sets the item version of the block to our custom class
 			.build(new Block("customItem", startingBlockId++, Material.dirt));
 
@@ -79,9 +80,17 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint {
 		customBlockModel = new BlockBuilder(MOD_ID)
 			.setBlockModel(
 				block -> new BlockModelTorch<>(block)
-					.withTextures("examplemod:block/customTorchTexture")) // Sets the block texture to the one stored in '/assets/examplemod/block/customTorchTexture.png'
-			.setLuminance(14) // Sets the block light output of the block, range from [0 - 15] its converted to a float internally by dividing the value by 15f
+					.withTextures("examplemod:block/customTorchTexture")) // Sets the block texture to the one stored in '/assets/examplemod/textures/block/customTorchTexture.png'
+			.setLuminance(14) // Sets the block light output of the block, range from [0 - 15] it's converted to a float internally by dividing the value by 15f
 			.build(new BlockTorch("customModel", startingBlockId++));
+
+		// Creates and assigns customBlockModel a new block with the language key 'tile.examplemod.customModel2' with an id of 2006 with a custom texture and the model we created CustomBlockModel
+		customBlockModel2 = new BlockBuilder(MOD_ID)
+			.setBlockModel(
+				block -> new CustomBlockModel<>(block) // Assing our custom model to the block
+					.withTextures("minecraft:block/sponge")) // Sets the block texture to sponge
+			.build(new BlockCustomShape("customModel2", startingBlockId++, Material.sponge)) // Set out custom block that goes with our custom model
+			.withLitInteriorSurface(true); // Makes it sample light from within itself rather than from neighboring blocks
 
 		// Make sure to assign names and descriptions to your blocks in your mods .lang file
 
