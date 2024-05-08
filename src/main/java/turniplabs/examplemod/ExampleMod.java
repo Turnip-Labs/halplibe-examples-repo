@@ -16,6 +16,12 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint {
 	public static final String MOD_ID = "examplemod";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static BlockBuilder standardBlockBuilder = new BlockBuilder(MOD_ID)
+		.setTopTexture("examplemod:block/up") // Set top texture to up.png
+		.setBottomTexture("examplemod:block/down") // Set down texture to down.png
+		.setNorthTexture("examplemod:block/north") // Set north texture to north.png
+		.setEastTexture("examplemod:block/east") // Set east texture to east.png
+		.setSouthTexture("examplemod:block/south") // Set south texture to south.png
+		.setWestTexture("examplemod:block/west") // Set west texture to west.png
 		.setHardness(5f); // Sets the hardness which affects the time to mine the blocks
 	public static Block directionCube;
 	public static Block grassTop;
@@ -38,57 +44,37 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint {
 		int startingBlockId = 2000;
 
 		// Creates and assigns directionCube a new block with the language key 'tile.examplemod.direction' with an id of 2000
-		directionCube = standardBlockBuilder
-			.setBlockModel(block -> new BlockModelStandard<>(block).withTextures(
-				"examplemod:block/up", // Set top texture to up.png
-				"examplemod:block/down", // Set down texture to down.png
-				"examplemod:block/north", // Set north texture to north.png
-				"examplemod:block/east", // Set east texture to east.png
-				"examplemod:block/south", // Set south texture to south.png
-				"examplemod:block/west")) // Set west texture to west.png
-			.build(new Block("direction", startingBlockId++, Material.stone));
+		directionCube = standardBlockBuilder.build(new Block("direction", startingBlockId++, Material.stone));
 
 		// Creates and assigns grassTop a new block with the language key 'tile.examplemod.grassTop' with an id of 2001 with the top texture changed to grass
 		grassTop = standardBlockBuilder
-			.setBlockModel(block -> new BlockModelStandard<>(block).withTextures(
-				"minecraft:block/grass_top",
-				"examplemod:block/down",
-				"examplemod:block/north",
-				"examplemod:block/east",
-				"examplemod:block/south",
-				"examplemod:block/west"))
+			.setTopTexture("minecraft:block/grass_top")
 			.build(new Block("grassTop", startingBlockId++, Material.grass));
 
 		// Creates and assigns stoneSide a new block with the language key 'tile.examplemod.stoneSide' with an id of 2002 with the side textures changed to stone
 		stoneSide = standardBlockBuilder
-			.setBlockModel(block -> new BlockModelStandard<>(block).withTextures(
-			"examplemod:block/up",
-			"examplemod:block/down",
-			"minecraft:block/stone"))
+			.setSideTextures("minecraft:block/stone")
 			.build(new Block("stoneSide", startingBlockId++, Material.grass));
 
 		// Creates and assigns customBlockItem a new block with the language key 'tile.examplemod.customItem' with an id of 2003 with a custom Item class
 		customBlockItem = standardBlockBuilder
-			.setBlockModel(block -> new BlockModelStandard<>(block).withTextures(
-				"minecraft:block/grass_top",
-				"minecraft:block/dirt",
-				"minecraft:block/grass_side"))
+			.setTopTexture("minecraft:block/grass_top")
+			.setBottomTexture("minecraft:block/dirt")
+			.setSideTextures("minecraft:block/grass_side")
 			.setItemBlock((Block b) -> new CustomItemBlockExample(b)) // Sets the item version of the block to our custom class
 			.build(new Block("customItem", startingBlockId++, Material.dirt));
 
 		// Creates and assigns customBlockModel a new block with the language key 'tile.examplemod.customModel' with an id of 2004 with a custom texture and the torch model
 		customBlockModel = new BlockBuilder(MOD_ID)
-			.setBlockModel(
-				block -> new BlockModelTorch<>(block)
-					.withTextures("examplemod:block/customTorchTexture")) // Sets the block texture to the one stored in '/assets/examplemod/textures/block/customTorchTexture.png'
+			.setBlockModel(BlockModelTorch::new)
+			.setTextures("examplemod:block/customTorchTexture") // Sets the block texture to the one stored in '/assets/examplemod/textures/block/customTorchTexture.png'
 			.setLuminance(14) // Sets the block light output of the block, range from [0 - 15] it's converted to a float internally by dividing the value by 15f
 			.build(new BlockTorch("customModel", startingBlockId++));
 
 		// Creates and assigns customBlockModel a new block with the language key 'tile.examplemod.customModel2' with an id of 2006 with a custom texture and the model we created CustomBlockModel
 		customBlockModel2 = new BlockBuilder(MOD_ID)
-			.setBlockModel(
-				block -> new CustomBlockModel<>(block) // Assing our custom model to the block
-					.withTextures("minecraft:block/sponge")) // Sets the block texture to sponge
+			.setBlockModel(block -> new CustomBlockModel<>(block))
+			.setTextures("minecraft:block/sponge") // Sets the block texture to sponge
 			.build(new BlockCustomShape("customModel2", startingBlockId++, Material.sponge)) // Set out custom block that goes with our custom model
 			.withLitInteriorSurface(true); // Makes it sample light from within itself rather than from neighboring blocks
 
