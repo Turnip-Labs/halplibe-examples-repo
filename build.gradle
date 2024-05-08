@@ -33,14 +33,6 @@ repositories {
 		metadataSources { artifact() }
 	}
 	ivy {
-		url = "https://github.com/Turnip-Labs"
-		patternLayout {
-			artifact "[organisation]/releases/download/[revision]/[module]-bta-[revision].jar"
-			m2compatible = true
-		}
-		metadataSources { artifact() }
-	}
-	ivy {
 		url = "https://piston-data.mojang.com"
 		patternLayout {
 			artifact "v1/[organisation]/[revision]/[module].jar"
@@ -75,7 +67,7 @@ dependencies {
 
 	implementation 'com.google.guava:guava:30.0-jre'
 	implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
-	var log4jVersion = "2.20.0"
+	var log4jVersion = '2.23.1'
 	implementation("org.apache.logging.log4j:log4j-core:${log4jVersion}")
 	implementation("org.apache.logging.log4j:log4j-api:${log4jVersion}")
 	implementation("org.apache.logging.log4j:log4j-1.2-api:${log4jVersion}")

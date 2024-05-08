@@ -23,6 +23,9 @@
     ],
 		"beforeGameStart": [
 			"turniplabs.examplemod.ExampleMod"
+		],
+		"recipesReady": [
+			"turniplabs.examplemod.ExampleMod"
 		]
 	},
   "mixins": [
