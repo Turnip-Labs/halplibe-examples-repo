@@ -1,11 +1,10 @@
 package turniplabs.examplemod;
 
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.render.item.model.ItemModel;
 import net.minecraft.client.render.item.model.ItemModelStandard;
-import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemFood;
+import net.minecraft.core.item.Items;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.examplemod.item.ItemCarrotStick;
@@ -44,28 +43,28 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint, RecipeEn
 		// By default the texture for the item uses its given key and our modId in this case since we set the key to "bamboo" and our modId is "examplemod"
 		// it uses the texture "/assets/examplemod/textures/item/bamboo.png" for its icon
 		bamboo = new ItemBuilder(MOD_ID)
-			.build(new Item("bamboo", startingItemId++));
+			.build(new Item("bamboo", String.format("%s:item/%s", MOD_ID, "bamboo"), startingItemId++));
 
 		// A custom items using the ItemFood food class making it edible, we can change the input parameters in order to change how much it heals
 		potato = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("potato", startingItemId++, 2, 72, false, 64));
+			.build(new ItemFood("potato", String.format("%s:item/%s", MOD_ID, "potato"), startingItemId++, 2, 72, false, 64));
 		carrot = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("carrot", startingItemId++, 2, 40, false, 64));
+			.build(new ItemFood("carrot", String.format("%s:item/%s", MOD_ID, "carrot"), startingItemId++, 2, 40, false, 64));
 		potatoBaked = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("baked.potato", startingItemId++, 6, 30, false, 8));
+			.build(new ItemFood("baked.potato", String.format("%s:item/%s", MOD_ID, "baked_potato"), startingItemId++, 6, 30, false, 8));
 
 		// A custom item with custom properties
 		carrotStick = new ItemBuilder(MOD_ID)
 			.setItemModel(item -> new ItemModelStandard(item, null).setRotateWhenRendering().setFull3D()) // This sets the item to render likes tools do, where its rotated in the player's hand
 			.setIcon("examplemod:item/carrot_on_a_stick") // This sets a specific texture to use for the icon of them item, in this case it loads "/assets/examplemod/textures/item/carrot_on_a_stick.png"
 			.setStackSize(1) // Sets the max stack size to be 1
-			.build(new ItemCarrotStick("stick.carrot", startingItemId++)); // We assign our custom item class to it to give it custom behavior
+			.build(new ItemCarrotStick("stick.carrot", String.format("%s:item/%s", MOD_ID, "stick_carrot"), startingItemId++)); // We assign our custom item class to it to give it custom behavior
 
 		// A custom item with a custom ItemModel
 		rgbChestplate = new ItemBuilder(MOD_ID)
 			.setItemModel(item -> new CustomItemModel(item, null)) // We set a custom item model to the item, this model just changes the item's color through time
 			.setIcon("examplemod:item/leather_chestplate")
-			.build(new Item("rgb.chest", startingItemId++));
+			.build(new Item("rgb.chest", String.format("%s:item/%s", MOD_ID, "rgb_chest"), startingItemId++));
 	}
 
 	@Override
@@ -79,7 +78,7 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint, RecipeEn
 
 		// Make the carrot on a stick craftable by crafting a carrot and fishing rod
 		RecipeBuilder.Shapeless(MOD_ID)
-			.addInput(Item.toolFishingrod)
+			.addInput(Items.TOOL_FISHINGROD)
 			.addInput(carrot)
 			.create("carrot_on_a_stick", carrotStick.getDefaultStack());
 
@@ -87,7 +86,7 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint, RecipeEn
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(bamboo)
 			.addInput(bamboo)
-			.create("bamboo_to_stick", Item.stick.getDefaultStack());
+			.create("bamboo_to_stick", Items.STICK.getDefaultStack());
 
 	}
 
