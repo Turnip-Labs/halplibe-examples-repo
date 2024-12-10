@@ -48,7 +48,7 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint {
 
 		// Creates and assigns grassTop a new block with the language key 'tile.examplemod.grassTop' with an id of 2001 with the top texture changed to grass
 		grassTop = standardBlockBuilder
-			.setTopTexture("minecraft:block/grass_top")
+			.setTopTexture("minecraft:block/grass/top")
 			.build("grassTop", startingBlockId++, b -> new BlockLogic(b, Material.grass));
 
 		// Creates and assigns stoneSide a new block with the language key 'tile.examplemod.stoneSide' with an id of 2002 with the side textures changed to stone
@@ -58,9 +58,9 @@ public class ExampleMod implements ModInitializer, GameStartEntrypoint {
 
 		// Creates and assigns customBlockItem a new block with the language key 'tile.examplemod.customItem' with an id of 2003 with a custom Item class
 		customBlockItem = standardBlockBuilder
-			.setTopTexture("minecraft:block/grass_top")
-			.setBottomTexture("minecraft:block/dirt")
-			.setSideTextures("minecraft:block/grass_side")
+			.setTopTexture("minecraft:block/grass/top")
+			.setBottomTexture("minecraft:block/grass/bottom")
+			.setSideTextures("minecraft:block/grass/side")
 			.setBlockItem((Block<?> b) -> new CustomItemBlockExample(b)) // Sets the item version of the block to our custom class
 			.build("customItem", startingBlockId++, b -> new BlockLogic(b, Material.dirt));
 

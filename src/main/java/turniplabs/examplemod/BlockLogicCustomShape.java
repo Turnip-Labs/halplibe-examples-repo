@@ -28,8 +28,8 @@ public class BlockLogicCustomShape extends BlockLogic {
 	@Override
 	public void getCollidingBoundingBoxes(World world, int x, int y, int z, AABB aabb, ArrayList<AABB> aabbList) {
 		// Adds the collision box for the bottom section of the block
-		addIntersectingBoundingBox(aabb, AABB.getTemporaryBB(0, 0, 0, 1, 0.5, 1), aabbList);
+		addIntersectingBoundingBox(aabb, AABB.getTemporaryBB(0, 0, 0, 1, 0.5, 1).move(x, y, z), aabbList);
 		// Adds the collision box for the top section of the block
-		addIntersectingBoundingBox(aabb, AABB.getTemporaryBB(0.25, 0.5, 0.25, 0.75, 1, 0.75), aabbList);
+		addIntersectingBoundingBox(aabb, AABB.getTemporaryBB(0.25, 0.5, 0.25, 0.75, 1, 0.75).move(x, y, z), aabbList);
 	}
 }
