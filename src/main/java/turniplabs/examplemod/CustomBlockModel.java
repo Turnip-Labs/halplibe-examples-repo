@@ -1,7 +1,5 @@
 package turniplabs.examplemod;
 
-import net.minecraft.client.render.block.color.BlockColor;
-import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.BlockModelStandard;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.core.block.Block;
@@ -30,18 +28,7 @@ public class CustomBlockModel<T extends BlockLogic> extends BlockModelStandard<T
 
 	@Override
 	public void renderBlockOnInventory(Tessellator tessellator, int metadata, float brightness, float alpha, @Nullable Integer lightmapCoordinate) {
-		if (renderBlocks.useInventoryTint) {
-			int color = BlockColorDispatcher.getInstance().getDispatch(this.block).getFallbackColor(metadata);
-			float r = (float)(color >> 16 & 255) / 255.0F;
-			float g = (float)(color >> 8 & 255) / 255.0F;
-			float b = (float)(color & 255) / 255.0F;
-			GL11.glColor4f(r * brightness, g * brightness, b * brightness, alpha);
-		} else {
-			GL11.glColor4f(brightness, brightness, brightness, alpha);
-		}
-
-		float yOffset = 0.5F;
-		GL11.glTranslatef(-0.5F, 0.0F - yOffset, -0.5F);
+		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 
 		// Draw the lower cube of the model
 		AABB bounds = AABB.getTemporaryBB(0, 0, 0, 1, 0.5, 1);
@@ -51,6 +38,6 @@ public class CustomBlockModel<T extends BlockLogic> extends BlockModelStandard<T
 		bounds.set(0.25, 0.5, 0.25, 0.75, 1, 0.75);
 		renderBlockWithBounds(tessellator, bounds, metadata, brightness, alpha, lightmapCoordinate);
 
-		GL11.glTranslatef(0.5F, yOffset, 0.5F);
+		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 	}
 }
